@@ -207,9 +207,6 @@ extends SessionBackend {
             $this->data = new SessionData(['session_id' => $id]);
 
         $this->data->session_data = "";
-        catch (DoesNotExist $e) {
-            $this->data = new SessionData(['session_id' => $id]);
-
         $this->data->session_expire =
             SqlFunction::NOW()->plus(SqlInterval::SECOND($ttl));
         $this->data->user_id = $thisstaff ? $thisstaff->getId() : 0;
